@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#fffdf8">
+<title>Chatter</title>
+<link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+<div id="toast" class="toast hidden"></div>
+
+<main id="screen-auth" class="screen auth-screen">
+  <div class="auth-wrap">
+    <div class="brand"><span class="brand-mark">C</span><span>Chatter</span></div>
+    <div class="auth-copy">
+      <h1 id="auth-title">إنشاء حساب</h1>
+      <p id="auth-subtitle">أنشئ حسابك وابدأ المحادثة.</p>
+    </div>
+    <div class="segmented">
+      <button class="segment active" data-auth="phone">الهاتف</button>
+      <button class="segment" data-auth="email">البريد الإلكتروني</button>
+    </div>
+    <form id="auth-form" class="form">
+      <label id="contact-label">رقم الهاتف</label>
+      <div class="field"><input id="identifier" required placeholder="+212 6 00 00 00 00"></div>
+      <label id="name-label">الاسم</label>
+      <div class="field"><input id="name" placeholder="اكتب اسمك" autocomplete="name"></div>
+      <label>كلمة المرور</label>
+      <div class="field password-field">
+        <input id="password" type="password" required minlength="8" placeholder="••••••••">
+        <button type="button" class="field-action" id="toggle-password">إظهار</button>
+      </div>
+      <button class="primary-btn" id="auth-submit" type="submit">إنشاء حساب</button>
+    </form>
+    <button class="text-link" id="auth-switch">لدي حساب بالفعل</button>
+  </div>
+</main>
+
+<main id="screen-chats" class="screen hidden">
+<header class="topbar">
+  <div class="topbar-title"><span class="brand-dot"></span><strong>Chatter</strong></div>
+  <div class="topbar-actions"><button class="icon-btn" id="open-settings">☰</button></div>
+</header>
+<section class="page-content">
+  <div class="page-heading"><div><h1>المحادثات</h1><p>رسائلك</p></div><button class="new-chat-text" id="new-chat">محادثة جديدة</button></div>
+  <div class="search-field"><span>⌕</span><input id="search" type="search" placeholder="البحث في المحادثات"></div>
+  <div id="chat-list" class="chat-list"></div>
+  <div id="empty" class="empty-state hidden">لا توجد محادثات.</div>
+</section>
+<button class="fab" id="fab">+</button>
+<nav class="bottom-nav">
+<button class="nav-item active" data-screen="chats"><span>▤</span><small>المحادثات</small></button>
+<button class="nav-item" data-screen="contacts"><span>♙</span><small>جهات الاتصال</small></button>
+<button class="nav-item" data-screen="settings"><span>⚙</span><small>الإعدادات</small></button>
+</nav>
+</main>
+
+<main id="screen-chat" class="screen hidden">
+<header class="chat-header"><button class="back-btn" id="back">‹</button><div class="chat-person"><div id="chat-avatar" class="avatar avatar-sm">?</div><div><strong id="chat-name"></strong><small id="chat-status">متصل</small></div></div></header>
+<section id="messages" class="messages"></section>
+<form id="composer" class="composer"><input id="message" placeholder="اكتب رسالة..." autocomplete="off"><button>إرسال</button></form>
+</main>
+
+<main id="screen-contacts" class="screen hidden">
+<header class="simple-header"><h1>جهات الاتصال</h1></header>
+<section class="page-content">
+<div class="search-field"><span>⌕</span><input id="contact-search" placeholder="البحث عن جهة اتصال"></div>
+<div id="contacts" class="contact-list"></div>
+</section>
+<nav class="bottom-nav">
+<button class="nav-item" data-screen="chats"><span>▤</span><small>المحادثات</small></button>
+<button class="nav-item active" data-screen="contacts"><span>♙</span><small>جهات الاتصال</small></button>
+<button class="nav-item" data-screen="settings"><span>⚙</span><small>الإعدادات</small></button>
+</nav>
+</main>
+
+<main id="screen-settings" class="screen hidden">
+<header class="simple-header"><h1>الإعدادات</h1></header>
+<section class="settings-list">
+<button class="settings-row"><span>الحساب</span><b>›</b></button>
+<button class="settings-row"><span>الخصوصية</span><b>›</b></button>
+<button class="settings-row"><span>المظهر</span><b>›</b></button>
+<button class="settings-row"><span>حول Chatter</span><b>›</b></button>
+<button class="settings-row danger" id="logout">تسجيل الخروج</button>
+</section>
+<nav class="bottom-nav">
+<button class="nav-item" data-screen="chats"><span>▤</span><small>المحادثات</small></button>
+<button class="nav-item" data-screen="contacts"><span>♙</span><small>جهات الاتصال</small></button>
+<button class="nav-item active" data-screen="settings"><span>⚙</span><small>الإعدادات</small></button>
+</nav>
+</main>
+
+<div id="modal" class="modal hidden"><div class="modal-backdrop"></div><div class="modal-box">
+<div class="modal-head"><strong>محادثة جديدة</strong><button id="close-modal">×</button></div>
+<p>اختر جهة اتصال لبدء المحادثة.</p><div id="modal-contacts" class="modal-contacts"></div>
+</div></div>
+
+<script type="module" src="./js/api.js"></script>
+<script type="module" src="./js/app.js"></script>
+</body></html>
